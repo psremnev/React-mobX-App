@@ -23,8 +23,8 @@ export const Header = observer(class extends Component {
     render() {
         const color = { backgroundColor: this.color }
         return (
-            <div className="App-Header" onClick={this.changeHeader}>
-                <span style={color}>{this.header}</span>
+            <div className="App-Header" style={color} onClick={this.changeHeader}>
+                {this.header}
             </div>
         );
     }
