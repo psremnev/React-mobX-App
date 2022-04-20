@@ -6,6 +6,7 @@ export default class Header extends Component{
     constructor(props) {
         super();
         this.props = props;
+        this.store = props.store;
     }
     componentDidMount() {
         return;
@@ -22,7 +23,7 @@ export default class Header extends Component{
     render() {
         return (
             <div className="App-Header">
-                {this.props.title.message }
+                {this.store.header }
             </div>
         );
     }

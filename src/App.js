@@ -1,22 +1,24 @@
 import './App.css';
 import Header from './Header/Header'
 import Content from './Content/Content'
-import { observer } from 'mobx-react-lite'
+import { makeObservable, observable } from 'mobx'
 import {Component} from "react";
 
 class App extends Component {
-    header = { message: "Привет"}
+    header = "Привет";
 
+    constructor() {
+        super();
+        this.store = makeObservable(this, {header: observable})
+    }
     changeHeader() {
-        this.setState()
-        this.header = { message: "Пока"}
+        this.store.header = "Пока"
     }
 
     render() {
-        const HeaderView = observer(({title}) => <Header title={title}/>)
         return (
             <div className="App" onClick={ this.changeHeader.bind(this) }>
-                <HeaderView title={this.header} />
+                <Header store={this.store} />
                 <Content/>
             </div>
         );
