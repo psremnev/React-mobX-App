@@ -1,30 +1,31 @@
 import './Header.css';
 import { Component } from 'react';
+import { observer } from 'mobx-react'
+import { makeObservable, observable } from 'mobx'
 
-export default class Header extends Component{
+export const Header = observer(class extends Component {
+    header = 'Зеленый';
+    color = 'green'
 
     constructor(props) {
-        super();
-        this.props = props;
-        this.store = props.store;
-    }
-    componentDidMount() {
-        return;
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        return;
+        super(props);
+        makeObservable(this, {
+            header: observable,
+            color: observable
+        })
     }
 
-    componentWillUnmount() {
-        return;
+    changeHeader = () => {
+        this.header = this.header === 'Зеленый' ? 'Красный' : 'Зеленый';
+        this.color = this.color === 'green' ? 'red' : 'green';
     }
 
     render() {
+        const color = { backgroundColor: this.color }
         return (
-            <div className="App-Header">
-                {this.store.header }
+            <div className="App-Header" onClick={this.changeHeader}>
+                <span style={color}>{this.header}</span>
             </div>
         );
     }
-}
+})
