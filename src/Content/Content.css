@@ -1,4 +1,4 @@
 .App-Content {
     height: 100%;
-    background: antiquewhite;
+    background-color: var(--color_default);
 }
